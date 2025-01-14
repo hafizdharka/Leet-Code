@@ -8,5 +8,5 @@ SELECT
     visited_on, 
     SUM(amount) OVER (ORDER BY visited_on ROWS BETWEEN 6 preceding AND current ROW) AS amount, 
     ROUND(AVG(amount) OVER(ORDER BY visited_on ROWS BETWEEN 6 preceding AND current ROW),2) AS average_amount
-from sumz
-limit 5000 offset 6
+FROM sumz
+LIMIT 5000 OFFSET 6
