@@ -1,12 +1,12 @@
 # Write your MySQL query statement below
-with sumz as (
-    select visited_on, sum(amount) as amount
-    from customer
-    group by visited_on)
+WITH sumz AS (
+    SELECT visited_on, SUM(amount) AS amount
+    FROM customer
+    GROUP BY visited_on)
 
-select 
+SELECT 
     visited_on, 
-    sum(amount) over (order by visited_on rows between 6 preceding and current row) as amount, 
-    round(avg(amount) over(order by visited_on rows between 6 preceding and current row),2) as average_amount
+    SUM(amount) OVER (ORDER BY visited_on ROWS BETWEEN 6 preceding AND current ROW) AS amount, 
+    ROUND(AVG(amount) OVER(ORDER BY visited_on ROWS BETWEEN 6 preceding AND current ROW),2) AS average_amount
 from sumz
 limit 5000 offset 6
