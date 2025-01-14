@@ -1,4 +1,4 @@
 # Write your MySQL query statement below
 SELECT patient_id, patient_name, conditions
-from patients
-where conditions like 'DIAB1%' or conditions like '% DIAB1%'
+FROM patients
+WHERE conditions LIKE 'DIAB1%' OR conditions LIKE '% DIAB1%'
