@@ -1,4 +1,9 @@
-DELETE p1
-FROM person p1
-JOIN person p2
-ON p1.email = p2.email AND p1.id > p2.id;
+WITH dummy AS (
+    SELECT id, ROW_NUMBER() OVER (PARTITION BY email ORDER BY id ASC) AS rn
+    FROM person
+)
+
+DELETE FROM person
+WHERE id IN(
+    SELECT id FROM dummy WHERE rn>1
+)
