@@ -1,11 +1,11 @@
 # Write your MySQL query statement below
-with cte as (
-    select account_id, case 
-        when income <20000 then 'Low Salary'
-        when income <=50000 then 'Average Salary'
-        else 'High Salary'
-        end as category
-    from accounts
+WITH cat AS (
+    SELECT account_id, CASE 
+        WHEN income <20000 THEN 'Low Salary'
+        WHEN income <=50000 THEN 'Average Salary'
+        ELSE 'High Salary'
+        end AS category
+    FROM accounts
 ),
 
 ref AS (
@@ -16,9 +16,9 @@ ref AS (
     SELECT 'High Salary'
 )
 
-select r.category, count(c.category) as accounts_count
-from ref r
-left join cte c
-on r.category=c.category
-group by r.category
-order by accounts_count
+SELECT r.category, COUNT(c.category) AS accounts_count
+FROM ref r
+LEFT JOIN cat c
+ON r.category=c.category
+GROUP BY r.category
+ORDER BY accounts_count
