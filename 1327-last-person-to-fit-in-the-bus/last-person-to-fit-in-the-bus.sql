@@ -1,12 +1,12 @@
-with base as (
-    select 
+WITH base AS (
+    SELECT 
         *,
-        sum(weight) over(order by turn) as cuw
-    from queue
+        SUM(weight) OVER(ORDER BY turn) AS cuw
+    FROM queue
 )
 
-select person_name
-from base
-where cuw<=1000
-order by cuw desc
-limit 1
+SELECT person_name
+FROM base
+WHERE cuw<=1000
+ORDER BY cuw DESC
+LIMIT 1
