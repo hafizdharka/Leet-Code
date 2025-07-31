@@ -1,3 +1,3 @@
-select name, population, area
-from world
-where population>=25000000 or area>=3000000
+select name, population, w.area
+from world w
+where w.population>=25000000 or w.area>=3000000
