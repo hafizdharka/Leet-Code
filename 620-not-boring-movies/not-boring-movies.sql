@@ -1,5 +1,4 @@
-# Write your MySQL query statement below
 select *
-from cinema
-where description!='boring' and (id%2)!=0
+from  cinema c
+where (id%2!=0) and (description not like '%boring%')
 order by rating desc
