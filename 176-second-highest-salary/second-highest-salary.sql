@@ -1,11 +1,14 @@
-# Write your MySQL query statement below
-# Write your MySQL query statement below
-WITH ranked AS (
+With cte as(
     SELECT 
-        *,
-        DENSE_RANK() OVER(ORDER BY salary DESC) AS ranks
-    FROM employee)
+        DENSE_RANK() OVER(ORDER BY SALARY DESC) ranked,
+        salary 
+    FROM
+        Employee
+)
 
-SELECT (
-    SELECT salary FROM ranked WHERE ranks=2
-    LIMIT 1) AS SecondHighestSalary
+SELECT 
+    Max(salary) as SecondHighestSalary
+FROM 
+    cte
+WHERE 
+    ranked=2
